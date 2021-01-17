@@ -19,10 +19,13 @@ void twitter_parse_request(char *buf, request_t *request) {
 		switch (token_index) {
 			case 1:
 				request->id = atoll(token);
+				break;
 			case 2:
 				request->key_size = atoll(token);
+				break;
 			case 3:
 				request->value_size = atoll(token);
+				break;
 		}
 		token = strtok(NULL, ",");
 		++token_index;
