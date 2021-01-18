@@ -187,6 +187,7 @@ public:
 		if (root == nullptr) {
 			root = make_shared<avl_tree_node>(key, value, nullptr, nullptr, nullptr, 1, 1, value);
 			++num_nodes;
+			sum_value += value;
 			return;
 		}
 

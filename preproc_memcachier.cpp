@@ -42,6 +42,9 @@ int main(int argc, char *argv[]) {
 					break;
 				case 3:
 					key_size = atoll(token);
+					if (key_size < 0) {
+						key_size = 0;
+					}
 					break;
 				case 4:
 					value_size = atoll(token);
