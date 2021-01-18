@@ -26,6 +26,7 @@ int main(int argc, char *argv[]) {
 
 	std::unordered_map<ssize_t, FILE *> file_map;
 
+	ssize_t cur_line = 0;
 	while ((read_size = getline(&buf, &buf_size, input_fp)) != -1) {
 		ssize_t time, app_id, key_size, value_size, key;
 
@@ -69,7 +70,13 @@ int main(int argc, char *argv[]) {
 		}
 		FILE *file = file_map.at(app_id);
 		fprintf(file, "%ld,%ld,%ld,%ld\n", time, key, key_size, value_size);
+
+		++cur_line;
+		if (cur_line % 1000000 == 0) {
+			fprintf(stderr, "cur_line: %ld\r", cur_line);
+		}
 	}
+	fprintf(stderr, "\n");
 
 	for (auto i : file_map) {
 		fclose(i.second);
